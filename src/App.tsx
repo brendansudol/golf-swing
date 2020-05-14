@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
 
-function App() {
+const options = ["dj", "jt"]
+
+export function App() {
+  const [id, setId] = useState(options[0])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+        <select value={id} onChange={(e) => setId(e.target.value)}>
+          {options.map((o) => (
+            <option key={o}>{o}</option>
+          ))}
+        </select>
+      </div>
+      <video
+        src={`${process.env.PUBLIC_URL}/video/${id}.mp4`}
+        width={500}
+        autoPlay={true}
+      />
     </div>
-  );
+  )
 }
-
-export default App;
